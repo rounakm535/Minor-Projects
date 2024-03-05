@@ -1,24 +1,50 @@
 import random
-randNumber = random.randint(1, 100)
-userGuess = None
-guesses = 0
 
-while(userGuess != randNumber):
-    userGuess = int(input("Enter your guess: "))
-    guesses += 1
-    if(userGuess==randNumber):
-        print("You guessed it right!")
-    else:
-        if(userGuess>randNumber):
-            print("You guessed it wrong! Enter a smaller number")
-        else:
-            print("You guessed it wrong! Enter a larger number")
+# Snake Water Gun or Rock Paper Scissors
+def gameWin(comp, you):
+    # If two values are equal, declare a tie!
+    if comp == you:
+        return None
 
-print(f"You guessed the number in {guesses} guesses")
-with open("hiscore.txt", "r") as f:
-    hiscore = int(f.read())
+    # Check for all possibilities when computer chose s
+    elif comp == 's':
+        if you=='w':
+            return False
+        elif you=='g':
+            return True
+    
+    # Check for all possibilities when computer chose w
+    elif comp == 'w':
+        if you=='g':
+            return False
+        elif you=='s':
+            return True
+    
+    # Check for all possibilities when computer chose g
+    elif comp == 'g':
+        if you=='s':
+            return False
+        elif you=='w':
+            return True
 
-if(guesses<hiscore):
-    print("You have just broken the high score!")
-    with open("hiscore.txt", "w") as f:
-        f.write(str(guesses))
+print("Comp Turn: Snake(s) Water(w) or Gun(g)?")
+randNo = random.randint(1, 3) 
+if randNo == 1:
+    comp = 's'
+elif randNo == 2:
+    comp = 'w'
+elif randNo == 3:
+    comp = 'g'
+
+you = input("Your Turn: Snake(s) Water(w) or Gun(g)?")
+a = gameWin(comp, you)
+
+print(f"Computer chose {comp}")
+print(f"You chose {you}")
+
+if a == None:
+    print("The game is a tie!")
+elif a:
+    print("You Win!")
+else:
+    print("You Lose!")
