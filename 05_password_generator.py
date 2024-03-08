@@ -24,8 +24,7 @@ for char in range(1, nr_symbols + 1) :
 for char in range(1, nr_numbers+ 1) :
       password_low += random.choice(numbers)
 
-print(password_low)
-
+print(f"Weak password fo you  is: {password_low}")
  
 #Hard Level - Order of characters randomised:
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
@@ -49,4 +48,4 @@ password_high = ""
 for char in password_list:
   password_high += char
 
-print(f"Your password is: {password_high}")
+print(f"Strong password for you is: {password_high}")
